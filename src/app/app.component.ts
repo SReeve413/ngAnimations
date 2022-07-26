@@ -54,16 +54,41 @@ import { Component } from "@angular/core";
       transition("highlighted => normal", animate(800)),
       transition("shrunken <=> *", [
         style({
-          'background-color': 'orange'
+          'background-color': 'orange',
+          borderRadius: '0px'
         }),
-        animate(1000 , style({
+        animate(1000, style({
           borderRadius: '50px'
         })),
         animate(500)
       ]),
 
     ]),
+    trigger("list1", [
+      state(
+        "in",
+        style({
+          opacity: 1,
+          transform: "translateX(0)",
+        })
+      ),
+      transition("void => *", [
+        style({
+          opacity: 0,
+          transform: "translateX(-100px)"
+        }),
+        animate(300)
+      ]),
+      transition("* => void", [
+
+        animate(300, style({
+          opacity: 0,
+          transform: "translateX(100px)"
+        }))
+      ]),
+    ]),
   ],
+
 })
 export class AppComponent {
   state = "normal";
@@ -81,5 +106,9 @@ export class AppComponent {
 
   onAdd(item) {
     this.list.push(item);
+  }
+
+  onDelete(item) {
+    this.list = this.list.filter(x => x !== item)
   }
 }

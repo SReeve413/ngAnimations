@@ -143,6 +143,8 @@ export class AppComponent {
   wildState = "normal";
   list = ["Milk", "Sugar", "Bread"];
 
+  title="Animations"
+
   onAnimate() {
     this.state = this.state == "normal" ? "highlighted" : "normal";
     this.wildState = this.wildState == "normal" ? "highlighted" : "normal";
